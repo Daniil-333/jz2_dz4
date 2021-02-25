@@ -1,42 +1,48 @@
 class Valid {
+    regExpForName = /^[a-zа-яА-ЯёЁ]+$/i;
+    regExpForTel = /^\+7\(\d{3}\)\d{3}-\d{4}$/;
+    regExpForEmail = /^[a-z]{2,6}[.-]?[a-z]{4}@mail\.ru$/i;
 
-        constructor(name, tel, email) {
-            this.name = name;
-            this.tel = tel;
-            this.email = email;
+    constructor(name, tel, email) {
+            this.name = document.getElementById(name);
+            this.tel = document.getElementById(tel);
+            this.email = document.getElementById(email);
             this.init();
         }
 
         init() {
-            this._checkInputName();
-            this._checkInputTel();
-            this._checkInputEmail();
+            this._validateName();
+            this._validateTel();
+            this._validateEmail();
         }
 
-        _checkInputName () {
-            if (/^[a-zа-яА-ЯёЁ]+$/i.test(document.getElementById(this.name).value)) {
-                return;
+        _validateName () {
+            if (this.regExpForName.test(this.name.value)) {
+                this.removeError();
+                this.name.classList.remove('mistake');
             }else {
-                document.getElementById(this.name).classList.add('mistake');
-                document.getElementById(this.name).insertAdjacentHTML('afterend', `<span class="error">Допустимые символы для ввода: <b>[a-z],[а-я],[А-Я],[ёЁ]</b></span>`);
+                this.name.classList.add('mistake');
+                this.name.insertAdjacentHTML('afterend', `<span class="error">Допустимые символы для ввода: <b>[a-z],[а-я],[А-Я],[ёЁ]</b></span>`);
             }
         }
 
-        _checkInputTel () {
-            if (/^\+7\({1}\d{3}\)\d{3}-\d{4}$/.test(document.getElementById(this.tel).value)) {
-                return;
+        _validateTel () {
+            if (this.regExpForTel.test(this.tel.value)) {
+                this.removeError();
+                this.tel.classList.remove('mistake');
             }else {
-                document.getElementById(this.tel).classList.add('mistake');
-                document.getElementById(this.tel).insertAdjacentHTML('afterend', `<span class="error">Шаблон формата для ввода: <b>+7(000)000-0000</b></span>`);
+                this.tel.classList.add('mistake');
+                this.tel.insertAdjacentHTML('afterend', `<span class="error">Телефон пишется в формате: <b>+7(000)000-0000</b></span>`);
             }
         }
 
-        _checkInputEmail () {
-            if (/^[a-z]{2,6}[.-]?[a-z]{4}@mail\.ru$/i.test(document.getElementById(this.email).value)) {
-                return;
+        _validateEmail () {
+            if (this.regExpForEmail.test(this.email.value)) {
+                this.removeError();
+                this.email.classList.remove('mistake');
             }else {
-                document.getElementById(this.email).classList.add('mistake');
-                document.getElementById(this.email).insertAdjacentHTML('afterend', `<span class="error">E-mail может иметь вид <b>mymail@mail.ru</b>, или <b>my.mail@mail.ru</b>, или <b>my-mail@mail.ru</b></span>`);
+                this.email.classList.add('mistake');
+                this.email.insertAdjacentHTML('afterend', `<span class="error">E-mail должен быть вида: <b>mymail@mail.ru</b>, или <b>my.mail@mail.ru</b>, или <b>my-mail@mail.ru</b></span>`);
             }
         }
 
@@ -45,8 +51,8 @@ class Valid {
             error.forEach(er => er.remove());
         }
 }
+
 document.querySelector('form').addEventListener('submit', (event) => {
     event.preventDefault();
     new Valid('name', 'tel', 'email');
-
 });
