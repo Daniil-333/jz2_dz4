@@ -1,0 +1,21 @@
+label {
+  display: block;
+}
+input {
+  margin: 10px;
+  width: 200px;
+}
+textarea {
+  display: block;
+}
+input[type='submit'] {
+  height: 30px;
+  cursor: pointer;
+}
+.mistake {
+  border: 2px solid #ff0000;
+}
+.error {
+  color: #ff0033;
+}
+/*# sourceMappingURL=style.css.map */

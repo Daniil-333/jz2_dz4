@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>form</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<form action="#">
+    <label for="name">Введите своё имя:<input type="text" id="name"></label>
+    <label for="tel">Введите свой телефон:<input type="text" id="tel"></label>
+    <label for="email">Введите свой E-mail:<input type="text" id="email"></label>
+    <textarea name="message" cols="50" rows="10" placeholder="Введите текст сообщения"></textarea>
+    <input type="submit">
+</form>
+<script src="valid.js">
+    // document.querySelector('input[type=submit]').addEventListener('click', (event) => {
+    //     event.preventDefault();
+    //     new Valid('name', 'tel', 'email');
+    // })
+</script>
+</body>
+</html>
