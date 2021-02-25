@@ -39,9 +39,14 @@ class Valid {
                 document.getElementById(this.email).insertAdjacentHTML('afterend', `<span class="error">E-mail может иметь вид <b>mymail@mail.ru</b>, или <b>my.mail@mail.ru</b>, или <b>my-mail@mail.ru</b></span>`);
             }
         }
+
+        removeError() {
+            let error = document.querySelectorAll('.error');
+            error.forEach(er => er.remove());
+        }
 }
-document.querySelector('input[type=submit]').addEventListener('click', (event) => {
+document.querySelector('form').addEventListener('submit', (event) => {
     event.preventDefault();
     new Valid('name', 'tel', 'email');
-    // document.getElementById(this.email).value.match();
+
 });
